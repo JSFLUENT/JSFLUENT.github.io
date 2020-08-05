@@ -1,1 +1,1 @@
-[Coding Game](https://jsfluent.github.io)
+[Learn To Code](https://jsfluent.github.io)
