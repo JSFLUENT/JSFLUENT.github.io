@@ -3,15 +3,37 @@ function DebuggingMissingOperators(){}
 function DebuggingSyntaxErrors(){}
 function DebuggingSyntaxAnyError(){}
 ////////////////////////////////////////////////////////////////////
+
+
 class BugGenerator0 {
     expression      = "";
     buggyExpression = "";
     genExpression(){
-        this.expression = new ExpressionGenerator().diffDataTypeDiffOperators();
+        this.expression = new ExpressionGenerator().sameDataTypeDiffOperators(4, "number");
+        this.buggyExpression = this.expression;
         return this;
     }
     buggyValue(){
         if (!this.expression) throw new Error();
+
+        // arr of values
+        // arr of found values
+        // loop once through str to identfiy known values
+        // randomly change any vqlues index position
+        // "5 + 3 % 2"
+
+        var arrValue = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        var foundValues = [];
+        for (var i = 0; i < this.buggyExpression.length; i++) {
+            if (arrValue.includes(this.buggyExpression[i])) foundValues.push(i);        
+        }
+        var index = Math.floor(Math.random() * foundValues.length);
+        this.buggyExpression = this.buggyExpression.split("");
+
+        this.buggyExpression[foundValues[index]] = " ";
+
+        this.buggyExpression = this.buggyExpression.join("");
+
         return this;
     }
     buggyOperator(){
