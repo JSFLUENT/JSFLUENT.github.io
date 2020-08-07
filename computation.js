@@ -1,5 +1,7 @@
-function submitCode(id, func) { 
-    
+function submitCode(id, func) {
+    // let code = document.getElementById(`code-input${id}`).value; 
+    let answer = eval(`(${func.question})`);
+    document.getElementById(`answer${id}`).innerText = `A: ${answer}`;
 }
 function nextCode(id, func) { 
     func();
@@ -62,7 +64,7 @@ function DifferentDatatypeModulus(){
 function SameDataTypeWithNumbersXor(){
     let datatype = new ValueGenerator().getDataType("number");
     
-    let question = new ExpressionGenerator().sameDataTypeSameOperators(2+ Math.floor(Math.random() * 3 ),datatype,"%");
+    let question = new ExpressionGenerator().sameDataTypeSameOperators(2+ Math.floor(Math.random() * 3 ),datatype,"^");
     SameDataTypeWithNumbersXor.question = question;
     document.getElementById('question5').innerText = `Q: ${question}`;
     document.getElementById('answer5').innerText = `A: `;
