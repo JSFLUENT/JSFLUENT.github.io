@@ -58,10 +58,16 @@ class BugGenerator0 {
     buggySyntax(){
         if (!this.expression) throw new Error();
         var arrSyntax = ["(", ")", "{", "}", "[", "]", "'", '"', "`", ",", "?", ":", ";", "var", "let", "const", "for", "while", "if", "else if", "else"];
-        fountSyntax = [];
+        var foundSyntax = [];
         for (var i = 0; i < this.buggyExpression.length; i++){
-            if(arrSyntax.includes(this.buggyExpression))
+            if (arrSyntax.includes(this.buggyExpression[i])) foundSyntax.push(i);
         }
+
+        var index = Math.floor(Math.random() * foundSyntax.length);
+        this.buggyExpression[foundSyntax[index]] = " ";
+
+        this.buggyExpression = this.buggyExpression.join("");
+
         return this;
     }
 }
