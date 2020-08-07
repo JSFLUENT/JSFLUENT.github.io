@@ -1,7 +1,12 @@
-function DebuggingMissingValues(){}
-function DebuggingMissingOperators(){}
-function DebuggingSyntaxErrors(){}
-function DebuggingSyntaxAnyError(){}
+function DebuggingNonVariableExpressionsMissingValues(){}
+function DebuggingNonVariableExpressionsMissingOperators(){}
+function DebuggingNonVariableExpressionsSyntaxErrors(){}
+function DebuggingNonVariableExpressionsAnyError(){}
+
+function DebuggingVariablesExpressionMissingValues(){}
+function DebuggingVariablesExpressionMissingOperators(){}
+function DebuggingVariablesExpressionSyntaxErrors(){}
+function DebuggingVariablesExpressionAnyError(){}
 ////////////////////////////////////////////////////////////////////
 
 
@@ -11,6 +16,11 @@ class BugGenerator0 {
     genExpression(){
         this.expression = new ExpressionGenerator().sameDataTypeDiffOperators(4, "number");
         this.buggyExpression = this.expression;
+        return this;
+    }
+    wrapFunction(){
+        if (!this.expression) throw new Error();
+        
         return this;
     }
     buggyValue(){
