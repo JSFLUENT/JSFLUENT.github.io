@@ -38,6 +38,21 @@ class BugGenerator0 {
     }
     buggyOperator(){
         if (!this.expression) throw new Error();
+
+        var arrOps = [
+            "<",">",">=","<=","|","||","/","%","+","=","-","*","**","&","&&","^","!"
+        ];
+        var foundValues = [];
+        for (var i = 0; i < this.buggyExpression.length; i++) {
+            if (arrOps.includes(this.buggyExpression[i])) foundValues.push(i);        
+        }
+        var index = Math.floor(Math.random() * foundValues.length);
+        this.buggyExpression = this.buggyExpression.split("");
+
+        this.buggyExpression[foundValues[index]] = " ";
+
+        this.buggyExpression = this.buggyExpression.join("");
+
         return this;
     }
     buggySyntax(){
