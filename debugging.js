@@ -1,7 +1,35 @@
-function DebuggingNonVariableExpressionsMissingValues(){}
-function DebuggingNonVariableExpressionsMissingOperators(){}
-function DebuggingNonVariableExpressionsSyntaxErrors(){}
-function DebuggingNonVariableExpressionsAnyError(){}
+function DebuggingNonVariableExpressionsMissingValues(){
+    let BG = new BugGenerator0().buggyValue().wrapFunction();
+    let question = BG.buggyExpression;
+    let answer = BG.expression;
+    document.getElementById("code-input53").innerText = question;
+    DebuggingNonVariableExpressionsMissingValues.question = question;
+    DebuggingNonVariableExpressionsMissingValues.answer = answer;
+}
+function DebuggingNonVariableExpressionsMissingOperators(){
+    let BG = new BugGenerator0().buggyOperator().wrapFunction();
+    let question = BG.buggyExpression;
+    let answer = BG.expression;
+    document.getElementById("code-input54").innerText = question;
+    DebuggingNonVariableExpressionsMissingOperators.question = question;
+    DebuggingNonVariableExpressionsMissingOperators.answer = answer;
+}
+function DebuggingNonVariableExpressionsSyntaxErrors(){
+    let BG = new BugGenerator0().wrapFunction().buggySyntax();
+    let question = BG.buggyExpression;
+    let answer = BG.expression;
+    document.getElementById("code-input55").innerText = question;
+    DebuggingNonVariableExpressionsSyntaxErrors.question = question;
+    DebuggingNonVariableExpressionsSyntaxErrors.answer = answer;
+}
+function DebuggingNonVariableExpressionsAnyError(){
+    let BG = new BugGenerator1().anyError();
+    let question = BG.buggyExpression;
+    let answer = BG.expression;
+    document.getElementById("code-input56").innerText = question;
+    DebuggingNonVariableExpressionsAnyError.question = question;
+    DebuggingNonVariableExpressionsAnyError.answer = answer;
+}
 
 function DebuggingVariablesExpressionMissingValues(){}
 function DebuggingVariablesExpressionMissingOperators(){}
