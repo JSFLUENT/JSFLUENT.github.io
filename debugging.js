@@ -37,10 +37,11 @@ function DebuggingVariablesExpressionSyntaxErrors(){}
 function DebuggingVariablesExpressionAnyError(){}
 ////////////////////////////////////////////////////////////////////
 
-
+ new BudGenerator().genExpression().wrapFunction()
 class BugGenerator0 {
     expression      = "";
-    buggyExpression = "";
+    buggyExpression = "3 * 5";
+    wrappedExpression = "function exe() {return 3  * 5;}";
     genExpression(){
         this.expression = new ExpressionGenerator().sameDataTypeDiffOperators(4, "number");
         this.buggyExpression = this.expression;
@@ -48,8 +49,25 @@ class BugGenerator0 {
     }
     wrapFunction(){
         if (!this.expression) throw new Error();
-        
+       this.wrappedExpression = `function exe() {return ${this.buggyExpression};}`
         return this;
+    }
+    anyError() {
+        // small latter to Captial latter, 
+        // missing parenthesis, 
+        // miss bracket, 
+        // missing number, 
+        // number to string, 
+        // missing operator, 
+        // missing colone, 
+        // missing semi colone, 
+        // using different quetation mark
+        
+        var foundError = [];
+        for (var i = 0; i < wrappedExpression.length; i++){
+
+        }
+        
     }
     buggyValue(){
         if (!this.expression) throw new Error();
