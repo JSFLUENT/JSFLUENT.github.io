@@ -37,7 +37,6 @@ function DebuggingVariablesExpressionSyntaxErrors(){}
 function DebuggingVariablesExpressionAnyError(){}
 ////////////////////////////////////////////////////////////////////
 
- new BudGenerator().genExpression().wrapFunction()
 class BugGenerator0 {
     expression      = "";
     buggyExpression = "3 * 5";
