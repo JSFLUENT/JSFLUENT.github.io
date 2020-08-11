@@ -48,7 +48,7 @@ class BugGenerator0 {
     }
     wrapFunction(){
         if (!this.expression) throw new Error();
-       this.wrappedExpression = `function exe() {return ${this.buggyExpression};}`
+        this.wrappedExpression = `function exe() {return ${this.buggyExpression};}`
         return this;
     }
     anyError() {
