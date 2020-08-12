@@ -19,7 +19,13 @@ class LoopGenerator {
         // '<<=':{initial:0,limit:100,gt:true}, 
         // '&=': {initial:0,limit:100,gt:true}
     }
-    generate(){
+    ////////////////////////////////////////////////////////////
+    generate(op){
+        if (op in this.incs) {
+            let temp = this.incs[op];
+            this.incs = {};
+            this.incs[op] = temp;
+        }
         this.incrementOpSelector();
         this.limitSelector();
         this.incrementValueSelector();
@@ -28,6 +34,7 @@ class LoopGenerator {
         this.codeSyntaxPlacement();
         return this;
     }
+    ////////////////////////////////////////////////////////////
     incrementOpSelector(){
         let incs = Object.keys(this.incs);
         this.incOp = incs[Math.floor(Math.random()*incs.length)];
@@ -59,47 +66,4 @@ class LoopGenerator {
             ${this.codeBlock};
         }`;
     }
-    // generateBasic(){
-
-    //     let codeBlock;
-
-    //     this.initial = Math.round(Math.random() * 100);
-    //     let Nlimiter = Math.round(Math.random() * 100);
-    //     let Nincrementor = Math.ceil(Math.random() * 10);
-
-    //     let gt = Nlimiter > this.initial;
-
-    //     this.limiter = gt?`i < ${Nlimiter}`:`i > ${Nlimiter}`;
-    //     this.incrementor = (Nlimiter > this.initial)?`i += ${Nincrementor}`:`i -= ${Nincrementor}`;
-
-    //     codeBlock = `console.log(i)`;
-        
-    //     this.code = `for (let i = ${this.initial}; ${this.limiter}; ${this.incrementor}) {
-    //         ${codeBlock};
-    //     }`;        
-    //     return this;
-    // }
-    // generateIntermediate(){
-    //     let codeBlock;
-
-    //     this.initial = Math.round(Math.random() * 100);
-    //     let Nlimiter = Math.round(Math.random() * 100);
-    //     let Nincrementor = Math.ceil(Math.random() * 3) + 1;
-
-    //     let gt = Nlimiter > this.initial;
-        
-    //     this.limiter = gt?`i < ${Nlimiter}`:`i > ${Nlimiter}`;
-
-    //     this.incrementor = gt ? 
-    //         [`i += ${Nincrementor}`,`i *= ${Nincrementor}`][Math.round(Math.random())]
-    //         :
-    //         [`i -= ${Nincrementor}`,`i /= ${Nincrementor}`][Math.round(Math.random())];
-
-    //     codeBlock = `console.log(i)`;
-        
-    //     this.code = `for (let i = ${this.initial}; ${this.limiter}; ${this.incrementor}) {
-    //         ${codeBlock};
-    //     }`;        
-    //     return this;
-    // }
 }
