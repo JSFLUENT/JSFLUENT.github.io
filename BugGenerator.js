@@ -32,8 +32,8 @@ class BugGenerator0 {
     i;
     index;
 
-    genExpression(){
-        this.expression = new ExpressionGenerator().sameDataTypeDiffOperators(4, "number");
+    genExpression(n){
+        this.expression = new ExpressionGenerator().sameDataTypeDiffOperators(n || 4, "number");
         this.buggyExpression = this.expression;
         return this;
     }
