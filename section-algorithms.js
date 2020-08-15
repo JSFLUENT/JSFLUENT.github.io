@@ -4,13 +4,14 @@ let QuestionsAlgorithms = {};
 function submitCode_algs(id) {
     // let code = document.getElementById(`code-input${id}`).innerText.trim();
     
-    document.getElementById(`answer${id}`).innerText = `A: ${QuestionsAlgorithms[id].answer}`;
+    document.getElementById(`code-input${id}`).innerText = `${QuestionsAlgorithms[id].algorithm}`;
 }
 function nextCode_algs(id) { 
     QuestionsAlgorithms[id].generator();
     let html = ``;
     let set = QuestionsAlgorithms[id].ioSet;
     let setKeys = Object.keys(set[0]);
+    let o;
 
     setKeys.forEach(function (e) { 
         html += `<th>${e}</th>`;
@@ -18,7 +19,18 @@ function nextCode_algs(id) {
     document.getElementById(`section-algorithms-table-head-${id}`).innerHTML = html;
     html = ``;
 
-    // document.getElementById(`code-input${id}`).innerText = ``;
+    for (let k in set) {
+        o = set[k];
+        html += `<tr>`;
+        for (let k2 in o) {
+            html += `<td>${o[k2]}</td>`;
+        }
+        html += `</tr>`;
+    }
+    document.getElementById(`section-algorithms-table-body-${id}`).innerHTML = html;
+
+
+    document.getElementById(`code-input${id}`).innerText = `function exe(){ return ; }`;
 }
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -28,10 +40,10 @@ for (var i = 1; i <= 3; i++) {
         algorithm: null,
         variables: {},
         ioSet: {},
-        generator: (function (cnt) { 
+        generator: (function (cnt,i) { 
             return function () {
 
-                let AG = new AlgorithmGenerator().genExpression(i).generate(i).wrapFunction();
+                let AG = new AlgorithmGenerator().genExpression(i+1).generate(i).wrapFunction();
                
                 QuestionsAlgorithms[cnt].algorithm = AG.wrappedExpression;
                 QuestionsAlgorithms[cnt].variables = AG.variables;
@@ -44,12 +56,12 @@ for (var i = 1; i <= 3; i++) {
                     QuestionsAlgorithms[cnt].ioSet[k]["output"] = eval(`xz = (function(${AG.variables}){ return ${QuestionsAlgorithms[cnt].algorithm} })(${Object.values(QuestionsAlgorithms[cnt].ioSet[k])})`)();
                 }
             }
-        }(cnt))
+        }(cnt,i))
     };
 
     document.getElementById('section-algorithms-questions').innerHTML += `
     <div>
-       <h3>${i} variable operator functions</h3>
+       <h3>${i} variables operator ${i+1} values functions</h3>
        <button onclick="submitCode_algs(${cnt})">Submit Code</button>
        <button onclick="nextCode_algs(${cnt})">Next Question</button>
        <div>
@@ -61,7 +73,7 @@ for (var i = 1; i <= 3; i++) {
            <th>output:needed</th>
            <th>output:actual</th>
        </thead>
-       <tbody id="section-algorithm-table-body-${cnt++}">
+       <tbody id="section-algorithms-table-body-${cnt++}">
            <tr>
                <td>0</td>
                <td>0</td>
