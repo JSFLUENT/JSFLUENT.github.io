@@ -1,9 +1,14 @@
+// Array.from
+// Array.isArray
+// Array.prototype
 let attrs = `
 length
+
 pop
 push
 shift
 unshift
+
 slice
 splice
 fill
@@ -32,6 +37,46 @@ entries
 values
 keys`.split("\n");
 
-// Array.from
-// Array.isArray
-// Array.prototype
+
+let ParamsArray = {
+    value: {
+
+    },
+    valueN: {
+        description: 'accepts one to many values',
+        datatype: 'any'
+    },
+    target:     {},
+    start:      {},
+    begin:      {}, // diff from start is it's capable of negative numbers
+    end:        {},
+    callback:   {},
+    element:    {},
+    elementN:   {},
+    index:      {},
+    array:      {},
+    thisArg:    {},
+    depth:      {},
+    searchElement:{},
+    fromIndex:  {},
+    seperator:  {},
+    accumulator: {},
+    currentValue: {},
+    initialValue:   {},
+    compareFunction: {},
+    deleteCount: {},
+    itemN:  {},
+    locales: {},
+    options: {},
+};
+
+let x = {
+    length: {
+        description: ``,
+        generate: function(){},
+        nL: 0,
+        nH: 10,
+        datatypes: [],
+        params: {}
+    }
+}
