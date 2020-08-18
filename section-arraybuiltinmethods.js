@@ -332,7 +332,7 @@ let temp;
 for (let e in ArrayMethods) {
     methodName = e;
     params = ArrayMethods[e].params;
-    pDescription = ArrayMethods[e].Description;
+    pDescription = ArrayMethods[e].description;
     questions = "";
     // try param inputs empty and also pop params
     let populatedArray = new ArrayGenerator().generate(10).array;
