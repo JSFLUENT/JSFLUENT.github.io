@@ -5,7 +5,7 @@
 const ParamsArray = {
     value: {
         datatype: 'any',
-        description: ''
+        description: 'any datatype input'
     },
     valueN: {
         datatype: 'any',
@@ -80,8 +80,14 @@ const ParamsArray = {
         description: "",
         params: ["accumulator","currentValue","currentIndex","array"]
     },
-    currentValue: {},
-    initialValue:   {},
+    currentValue: {
+        datatype: "any",
+        description: "the current element selected",
+    },
+    initialValue:   {
+        datatype: "number",
+        description: "the starting point"
+    },
     compareFunction: {
         datatype: "function",
         description: "Specifies a function that defines the sort order. If omitted, the array is sorted according to each character's Unicode code point value, according to the string conversion of each element.",
@@ -295,4 +301,64 @@ const ArrayMethods = {
         "nH": 10,
         "params": []
     }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+document.getElementById("section-arraybuiltinmethods-questions").innerHTML += `
+    <div id="section-arraybuiltinmethods-questions-paramsreference">
+        <h3>Paramaters of Array builtin Methods</h3>
+    </div>
+    <div id="section-arraybuiltinmethods-questions-methods"></div>
+`;
+let paramName = "";
+let pDataType = "";
+let pDescription = "";
+for (let e in ParamsArray) {
+    paramName = e;
+    pDataType = ParamsArray[e].datatype;
+    pDescription = ParamsArray[e].description;
+    document.getElementById("section-arraybuiltinmethods-questions-paramsreference").innerHTML += `
+    <div>
+        <h4>Param: ${paramName}</h4>
+        <p>Datatype: ${pDataType}</p>
+        <p>Description: ${pDescription}</p>
+    </div>`
+}
+let methodName = "";
+let params     = "";
+let param      = "";
+let questions  = "";
+let temp;
+for (let e in ArrayMethods) {
+    methodName = e;
+    params = ArrayMethods[e].params;
+    pDescription = ArrayMethods[e].Description;
+    questions = "";
+    // try param inputs empty and also pop params
+    let populatedArray = new ArrayGenerator().generate(10).array;
+    if (0 === params.length) {
+        for (let i = 0; i < 10; i++) {
+            temp = populatedArray[methodName]();
+            questions += `<p>array.${methodName}() // outputs: [${populatedArray}] // ${temp}</p>`;
+        }
+    }
+    // else {
+    //     switch (param) {
+    //         case "any": ;
+    //         case "number": ;
+    //         case "function": ;
+    //         case "array": ;
+    //         case "object": ;
+    //         case "string": ;
+    //         default: throw new Error();
+    //     }
+    // }
+
+    document.getElementById("section-arraybuiltinmethods-questions-methods").innerHTML += `
+        <div>
+            <h4>Method: ${methodName}(${params})</h4>
+            <p>Description: ${pDescription}</p>
+            ${questions}
+        </div>
+    `;
 }
