@@ -17,6 +17,10 @@ let cnt = 0;
 let datatypes = {
     "boolean":"sameDataTypeSameOperators",
     "number":"sameDataTypeSameOperators",
+    "string":"sameDataTypeSameOperators",
+    "object":"sameDataTypeSameOperators",
+    "array":"sameDataTypeSameOperators",
+    "function":"sameDataTypeSameOperators",
     "": "diffDataTypeSameOperators"
 }
 let keys = Object.keys(ops.double);
